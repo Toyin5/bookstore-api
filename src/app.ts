@@ -8,6 +8,7 @@ import authRouter from './api/routers/auth';
 import { AppResponse } from './core/utils/appResponse';
 import AppError from './core/utils/appError';
 import { deserializeUser } from './api/middlewares/authenticate';
+import bookRouter from './api/routers/book';
 
 const app = express();
 
@@ -35,7 +36,9 @@ app.use(express.json());
 app.use(deserializeUser);
 
 app.use("/api/auth", authRouter);
-app.get('/health', (req, res) => {
+app.use("/api/books", bookRouter);
+
+app.get('/health', (_, res) => {
     AppResponse(res, null, 'Bookstore API is running');
 });
 

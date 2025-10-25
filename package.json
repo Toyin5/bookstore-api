@@ -11,9 +11,10 @@
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
     "build": "rimraf ./build && tsc",
     "sequelize:create": "npx sequelize db:create",
+    "generate:migration": "npx sequelize-cli migration:generate --name",
     "migrate:up": "npx sequelize-cli db:migrate",
     "migrate:undo": "npx sequelize-cli db:migrate:undo",
-    "seed": "npx sequelize db:seed:all",
+    "seed": "npx sequelize-cli db:seed:all",
     "drop": "npx sequelize db:drop"
   },
   "author": "Toyin5",
@@ -34,7 +35,6 @@
     "sequelize": "^6.37.7",
     "ts-custom-error": "^3.3.1",
     "tsyringe": "^4.10.0",
-    "umzug": "^3.8.2",
     "winston": "^3.17.0",
     "zod": "^4.1.12"
   },
