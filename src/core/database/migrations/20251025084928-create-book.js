@@ -56,6 +56,13 @@ module.exports = {
       }
     });
 
+    // Add unique constraint for uuid
+    await queryInterface.addConstraint('books', {
+      fields: ['uuid'],
+      type: 'unique',
+      name: 'unique_book_uuid'
+    });
+
     await queryInterface.addIndex('books', ['isbn']);
     await queryInterface.addIndex('books', ['title']);
     await queryInterface.addIndex('books', ['author']);

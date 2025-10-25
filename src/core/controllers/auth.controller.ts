@@ -1,5 +1,7 @@
+import { sequelize } from "../database/sequelize";
 import { UserCreationType } from "../interfaces/IUser";
 import { User } from "../model";
+import Cart from "../model/cart";
 import AppError from "../utils/appError";
 import bcrypt from 'bcryptjs';
 
@@ -8,13 +10,21 @@ export const registerUser = async(request:UserCreationType) => {
     if(existingUser){
         throw new AppError('User with this email already exists', 400);
     }
+    const transaction = await sequelize.transaction();
     const newUser = await User.create({
         first_name: request.first_name,
         last_name: request.last_name,
         email: request.email,
         password: await bcrypt.hash(request.password, 12),
         created_at: new Date()
-    });
+    }, {transaction});
+    // create a cart for the user
+    await Cart.create({
+        user_id:newUser.user_id,
+        created_at:new Date(),
+        updated_at:new Date()
+    }, {transaction});
+    await transaction.commit();
     return newUser;
 };
 
