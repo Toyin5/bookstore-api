@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import { accessTokenConfig, refreshTokenConfig } from '../../core/configs/default';
 import { reissueTokens } from '../../core/services/auth.service';
 import { verifyJwt } from '../../core/utils/jwt';
+import AppError from '../../core/utils/appError';
 
 export const deserializeUser = async (req: Request, res: Response, next: NextFunction) => {
   const accessToken = req.cookies[accessTokenConfig.cookieName];
@@ -42,9 +43,7 @@ export const authenticateUser = (req: Request, res: Response, next: NextFunction
   const user = res.locals.user;
 
   if (!user)
-    return res
-      .status(401)
-      .send('Authentication required to access this resource. Pls log in again');
+    throw new AppError('You are not logged in! Please log in to access this resource.', 401);
 
   return next();
 };

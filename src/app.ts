@@ -10,6 +10,7 @@ import AppError from './core/utils/appError';
 import { deserializeUser } from './api/middlewares/authenticate';
 import bookRouter from './api/routers/book';
 import cartRouter from './api/routers/cart';
+import orderRouter from './api/routers/order';
 
 const app = express();
 
@@ -39,6 +40,7 @@ app.use(deserializeUser);
 app.use('/api/auth', authRouter);
 app.use('/api/books', bookRouter);
 app.use('/api/cart', cartRouter);
+app.use('/api/orders', orderRouter);
 
 app.get('/health', (_, res) => {
   AppResponse(res, null, 'Bookstore API is running');

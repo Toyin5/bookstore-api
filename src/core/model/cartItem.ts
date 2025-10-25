@@ -1,7 +1,6 @@
-import { Model, DataTypes, Optional, BelongsToGetAssociationMixin } from 'sequelize';
+import { Model, DataTypes, Optional } from 'sequelize';
 import { sequelize } from '../database/sequelize';
 import ICartItem from '../interfaces/ICartItem';
-import Cart from './cart';
 
 type CartItemAttributes = Optional<ICartItem, 'id' | 'item_id'>;
 
