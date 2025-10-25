@@ -1,14 +1,9 @@
 import { Model, DataTypes, Optional, BelongsToGetAssociationMixin } from 'sequelize';
-import {sequelize} from '../database/sequelize';
+import { sequelize } from '../database/sequelize';
 import ICartItem from '../interfaces/ICartItem';
 import Cart from './cart';
 
-
-
-type CartItemAttributes = Optional<
-  ICartItem,
-  | 'id' | 'item_id'
-  >;
+type CartItemAttributes = Optional<ICartItem, 'id' | 'item_id'>;
 
 class CartItem extends Model<CartItemAttributes> {
   declare id: string;
@@ -25,43 +20,43 @@ CartItem.init(
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
-      allowNull: false
+      allowNull: false,
     },
     item_id: {
       type: DataTypes.UUIDV4,
       primaryKey: true,
-      defaultValue: DataTypes.UUIDV4()
+      defaultValue: DataTypes.UUIDV4(),
     },
     cart_id: {
       type: DataTypes.UUID,
       allowNull: false,
       references: {
         model: 'carts',
-        key: 'cart_id'
+        key: 'cart_id',
       },
-      onDelete: 'CASCADE'
+      onDelete: 'CASCADE',
     },
     book_id: {
       type: DataTypes.UUID,
       allowNull: false,
       references: {
         model: 'books',
-        key: 'uuid'
+        key: 'uuid',
       },
-      onDelete: 'RESTRICT'
+      onDelete: 'RESTRICT',
     },
     quantity: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
     },
     created_at: {
       type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW
+      defaultValue: DataTypes.NOW,
     },
     updated_at: {
       type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW
-    }
+      defaultValue: DataTypes.NOW,
+    },
   },
   {
     sequelize,
@@ -70,9 +65,9 @@ CartItem.init(
     indexes: [
       {
         unique: true,
-        fields: ['cart_id', 'book_id']
-      }
-    ]
+        fields: ['cart_id', 'book_id'],
+      },
+    ],
   }
 );
 

@@ -1,15 +1,9 @@
-import { accessTokenConfig, refreshTokenConfig } from "../configs/default";
-import { signJwt, verifyJwt } from "../utils/jwt";
+import { accessTokenConfig, refreshTokenConfig } from '../configs/default';
+import { signJwt, verifyJwt } from '../utils/jwt';
 
 export const createTokens = (user: object) => {
-  const accessToken = signJwt(
-    { user },
-    { expiresIn: accessTokenConfig.duration }
-  );
-  const refreshToken = signJwt(
-    { user },
-    { expiresIn: refreshTokenConfig.duration }
-  );
+  const accessToken = signJwt({ user }, { expiresIn: accessTokenConfig.duration });
+  const refreshToken = signJwt({ user }, { expiresIn: refreshTokenConfig.duration });
 
   return { accessToken, refreshToken };
 };

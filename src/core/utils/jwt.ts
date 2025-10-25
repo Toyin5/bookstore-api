@@ -2,7 +2,7 @@ import 'dotenv/config';
 import jwt from 'jsonwebtoken';
 import env from '../configs/environment';
 
-export const signJwt = (object: object, p0: { expiresIn: string; }) =>
+export const signJwt = (object: object, p0: { expiresIn: string }) =>
   jwt.sign(object, env.PRIVATE_KEY as string, {
     expiresIn: '24hr',
     algorithm: 'RS256',

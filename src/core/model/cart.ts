@@ -1,12 +1,15 @@
-import { Model, DataTypes, Optional, HasManyCreateAssociationMixin, HasManyGetAssociationsMixin } from 'sequelize';
-import {sequelize} from '../database/sequelize';
+import {
+  Model,
+  DataTypes,
+  Optional,
+  HasManyCreateAssociationMixin,
+  HasManyGetAssociationsMixin,
+} from 'sequelize';
+import { sequelize } from '../database/sequelize';
 import ICart from '../interfaces/ICart';
 import CartItem from './cartItem';
 
-type CartAttributes = Optional<
-  ICart,
-  | 'id' | 'cart_id'
-  >;
+type CartAttributes = Optional<ICart, 'id' | 'cart_id'>;
 
 interface CartInterface extends Model<CartAttributes> {
   id: number;
@@ -25,7 +28,7 @@ class Cart extends Model<CartAttributes> implements CartInterface {
   declare user_id: string;
   declare created_at: Date;
   declare updated_at: Date;
-  
+
   // Association mixins
   declare getCartItems: HasManyGetAssociationsMixin<CartItem>;
   declare createCartItem: HasManyCreateAssociationMixin<CartItem>;
@@ -37,35 +40,35 @@ Cart.init(
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
-      allowNull: false
+      allowNull: false,
     },
     cart_id: {
       type: DataTypes.UUIDV4,
       allowNull: false,
-      defaultValue: DataTypes.UUIDV4()
+      defaultValue: DataTypes.UUIDV4(),
     },
-    user_id:{
-        type: DataTypes.STRING,
-        allowNull: false,
-        references:{
-            model: 'users',
-            key: 'user_id'
-        },
-        onDelete: 'CASCADE'
+    user_id: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      references: {
+        model: 'users',
+        key: 'user_id',
+      },
+      onDelete: 'CASCADE',
     },
     created_at: {
       type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW
+      defaultValue: DataTypes.NOW,
     },
     updated_at: {
       type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW
+      defaultValue: DataTypes.NOW,
     },
   },
   {
     sequelize,
     tableName: 'carts',
-    timestamps: false
+    timestamps: false,
   }
 );
 

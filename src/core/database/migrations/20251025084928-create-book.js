@@ -8,25 +8,25 @@ module.exports = {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true,
-        allowNull: false
+        allowNull: false,
       },
       uuid: {
         type: Sequelize.UUID,
         allowNull: false,
-        defaultValue: Sequelize.UUIDV4
+        defaultValue: Sequelize.UUIDV4,
       },
       title: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
       },
       author: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
       },
       isbn: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: true
+        unique: true,
       },
       description: {
         type: Sequelize.TEXT,
@@ -47,20 +47,20 @@ module.exports = {
       created_at: {
         type: Sequelize.DATE,
         allowNull: false,
-        defaultValue: Sequelize.NOW
+        defaultValue: Sequelize.NOW,
       },
       updated_at: {
         type: Sequelize.DATE,
         allowNull: false,
-        defaultValue: Sequelize.NOW
-      }
+        defaultValue: Sequelize.NOW,
+      },
     });
 
     // Add unique constraint for uuid
     await queryInterface.addConstraint('books', {
       fields: ['uuid'],
       type: 'unique',
-      name: 'unique_book_uuid'
+      name: 'unique_book_uuid',
     });
 
     await queryInterface.addIndex('books', ['isbn']);
@@ -70,5 +70,5 @@ module.exports = {
 
   down: async (queryInterface) => {
     await queryInterface.dropTable('books');
-  }
+  },
 };

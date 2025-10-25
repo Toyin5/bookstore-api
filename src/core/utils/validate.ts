@@ -8,7 +8,7 @@ export const validate = <T>(data: unknown, schema: ZodType<T, any, any>): T => {
     if (error instanceof ZodError) {
       const formatted = error.issues.map((e) => ({
         path: e.path.join('.'),
-        message: e.message
+        message: e.message,
       }));
       throw new AppError('Validation Error', 499, formatted);
     }

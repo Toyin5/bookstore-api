@@ -1,4 +1,4 @@
-import { createLogger, format, transports } from "winston";
+import { createLogger, format, transports } from 'winston';
 
 const logger = createLogger({
   level: 'info',
@@ -9,9 +9,7 @@ const logger = createLogger({
       return `[${timestamp}] ${level}: ${message}`;
     })
   ),
-  transports: [
-    new transports.Console()
-  ],
+  transports: [new transports.Console()],
 });
 
 export default logger;

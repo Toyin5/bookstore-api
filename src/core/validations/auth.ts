@@ -1,14 +1,14 @@
 import { z } from 'zod';
 
 export const emailSchema = z.object({
-  email: z.email()
+  email: z.email(),
 });
 export const userIdSchema = z.object({
-  id: z.string().trim()
+  id: z.string().trim(),
 });
 
 export const codeSchemaVerifier = z.object({
-  code: z.string().trim().min(6).max(6)
+  code: z.string().trim().min(6).max(6),
 });
 
 export const userSignUpSchema = z.object({
@@ -21,7 +21,7 @@ export const userSignUpSchema = z.object({
     ),
   first_name: z.string().trim().min(1, 'First name is required'),
   last_name: z.string().trim().min(1, 'Last name is required'),
-  email: z.email()
+  email: z.email(),
 });
 
 export const userSignInSchema = z.object({
@@ -32,5 +32,5 @@ export const userSignInSchema = z.object({
     .regex(
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
       'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character'
-    )
+    ),
 });

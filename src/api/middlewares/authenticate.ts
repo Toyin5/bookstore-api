@@ -1,13 +1,9 @@
-import { NextFunction, Request, Response } from "express";
-import { accessTokenConfig, refreshTokenConfig } from "../../core/configs/default";
-import { reissueTokens } from "../../core/services/auth.service";
-import { verifyJwt } from "../../core/utils/jwt";
+import { NextFunction, Request, Response } from 'express';
+import { accessTokenConfig, refreshTokenConfig } from '../../core/configs/default';
+import { reissueTokens } from '../../core/services/auth.service';
+import { verifyJwt } from '../../core/utils/jwt';
 
-export const deserializeUser = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const deserializeUser = async (req: Request, res: Response, next: NextFunction) => {
   const accessToken = req.cookies[accessTokenConfig.cookieName];
   const refreshToken = req.cookies[refreshTokenConfig.cookieName];
   if (!accessToken || !refreshToken) return next();
@@ -42,19 +38,13 @@ export const deserializeUser = async (
   return next();
 };
 
-export const authenticateUser = (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const authenticateUser = (req: Request, res: Response, next: NextFunction) => {
   const user = res.locals.user;
 
   if (!user)
     return res
       .status(401)
-      .send(
-        "Authentication required to access this resource. Pls log in again"
-      );
+      .send('Authentication required to access this resource. Pls log in again');
 
   return next();
 };

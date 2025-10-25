@@ -1,15 +1,10 @@
 import { Model, DataTypes, Optional } from 'sequelize';
 import { IUser } from '../interfaces/IUser';
-import {sequelize} from '../database/sequelize';
+import { sequelize } from '../database/sequelize';
 
 type UserAttributes = Optional<
   IUser,
-  | 'id'
-  | `user_id`
-  | 'first_name'
-  | 'last_name'
-  | 'password'
-  | 'created_at'
+  'id' | `user_id` | 'first_name' | 'last_name' | 'password' | 'created_at'
 >;
 
 class User extends Model<UserAttributes> {
@@ -28,39 +23,39 @@ User.init(
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
-      allowNull: false
+      allowNull: false,
     },
     user_id: {
       type: DataTypes.UUIDV4,
       allowNull: false,
-      defaultValue: DataTypes.UUIDV4()
+      defaultValue: DataTypes.UUIDV4(),
     },
     first_name: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     last_name: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true
+      unique: true,
     },
     password: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     created_at: {
       type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW
+      defaultValue: DataTypes.NOW,
     },
   },
   {
     sequelize,
     tableName: 'users',
-    timestamps: false
+    timestamps: false,
   }
 );
 

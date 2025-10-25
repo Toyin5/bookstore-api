@@ -5,20 +5,20 @@ import Book from './book';
 
 // Setup associations
 Cart.hasMany(CartItem, {
-    sourceKey: 'cart_id',
-    foreignKey: 'cart_id',
-    as: 'cartItems'
+  sourceKey: 'cart_id',
+  foreignKey: 'cart_id',
+  as: 'cartItems',
 });
 
 CartItem.belongsTo(Cart, {
-    foreignKey: 'cart_id',
-    targetKey: 'cart_id'
+  foreignKey: 'cart_id',
+  targetKey: 'cart_id',
 });
 
 CartItem.belongsTo(Book, {
-    foreignKey: 'book_id',
-    targetKey: 'uuid',
-    as: 'book'
+  foreignKey: 'book_id',
+  targetKey: 'uuid',
+  as: 'book',
 });
 
 // Export all models

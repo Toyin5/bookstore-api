@@ -1,8 +1,8 @@
-import app from "./app";
-import "dotenv/config";
-import logger from "./core/configs/logger";
-import env from "./core/configs/environment";
-import databaseConnect from "./core/database/sequelize";
+import app from './app';
+import 'dotenv/config';
+import logger from './core/configs/logger';
+import env from './core/configs/environment';
+import databaseConnect from './core/database/sequelize';
 
 try {
   app.listen(env.PORT, async () => {
