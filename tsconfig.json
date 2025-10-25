@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "es2022",
+    "module": "commonjs",
+    "lib": ["es2022", "dom", "dom.iterable"],
+    "moduleResolution": "node",
+    "outDir": "build",
+    "strict": true,
+    "noImplicitAny": true,
+    "esModuleInterop": true,
+    "allowJs": true,
+    "typeRoots": ["./src/types", "./node_modules/@types"],
+    "resolveJsonModule": true
+  },
+  "exclude": ["**/*.test.ts"]
+}
