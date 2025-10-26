@@ -31,13 +31,15 @@ src/
 ├── core/                  # Core application code
 │   ├── configs/          # Configuration files
 │   ├── controllers/      # Business logic
-│   ├── database/        # Database setup and migrations
-│   ├── interfaces/      # TypeScript interfaces
-│   ├── models/          # Sequelize models
-│   ├── services/        # Service layer
-│   └── utils/           # Utility functions
-├── app.ts               # Express app setup
-└── server.ts           # Server entry point
+│   ├── database/         # Database setup and migrations
+│   ├── interfaces/       # TypeScript interfaces
+│   ├── models/           # Sequelize models
+│   ├── services/         # Service layer
+│   └── utils/            # Utility functions
+├── __tests__/            # Test files
+│   └── controllers/      # Controller tests
+├── app.ts                # Express app setup
+└── server.ts             # Server entry point
 ```
 
 ## Database Schema
@@ -146,7 +148,13 @@ see the [Get STarted](./GETTING_STARTED.md) on how to setup
 
 ## API Documentation
 
-The API is documented using Swagger/OpenAPI. When the server is running, you can access the interactive documentation at `/api-docs` endpoint. This provides:
+The API is documented using Swagger/OpenAPI. When the server is running, you can access the interactive documentation at:
+
+```
+http://localhost:PORT/api-docs
+```
+
+The Swagger documentation provides:
 
 - Detailed endpoint descriptions
 - Request/response schemas
