@@ -3,6 +3,8 @@ import cors from 'cors';
 import helmet from 'helmet';
 import cookieParser from 'cookie-parser';
 import errorHandler from './api/requestHandlers/errorHandler';
+import swaggerUi from 'swagger-ui-express';
+import { swaggerSpec } from './core/configs/swagger';
 import { createServer } from 'node:http';
 import authRouter from './api/routers/auth';
 import { AppResponse } from './core/utils/appResponse';
@@ -36,6 +38,9 @@ app.use(
 );
 app.use(express.json());
 app.use(deserializeUser);
+
+// Swagger Documentation
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.use('/api/auth', authRouter);
 app.use('/api/books', bookRouter);
